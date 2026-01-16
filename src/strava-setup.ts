@@ -103,7 +103,7 @@ export async function exchangeCodeForToken(
     throw new Error(`Token exchange failed: ${error}`);
   }
 
-  return response.json();
+  return response.json() as Promise<StravaTokenResponse>;
 }
 
 /**
@@ -140,7 +140,7 @@ export async function refreshAccessToken(
     throw new Error(`Token refresh failed: ${error}`);
   }
 
-  return response.json();
+  return response.json() as Promise<StravaTokenResponse>;
 }
 
 /**
@@ -236,7 +236,7 @@ export async function createWebhookSubscription(
     throw new Error(`Webhook subscription failed: ${error}`);
   }
 
-  return response.json();
+  return response.json() as Promise<{ id: number }>;
 }
 
 /**

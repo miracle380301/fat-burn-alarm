@@ -141,7 +141,7 @@ async function fetchActivityDetails(
     throw new Error(`Failed to fetch activity: ${error}`);
   }
 
-  return response.json();
+  return response.json() as Promise<StravaActivity>;
 }
 
 /**

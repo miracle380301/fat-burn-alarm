@@ -43,21 +43,38 @@ export default async function handler(
 
     const tokenData = await tokenRes.json();
 
+    // Strava 응답 체크
+    if (!tokenRes.ok || !tokenData.athlete) {
+      console.error('Strava token error:', tokenData);
+      res.status(400).json({ error: 'Strava auth failed', details: tokenData });
+      return;
+    }
+
+    console.log('Strava auth success:', tokenData.athlete.id, tokenData.athlete.firstname);
+
     // Supabase에 저장
     const supabase = createClient(
       process.env.SUPABASE_URL!,
       process.env.SUPABASE_KEY!
     );
 
-    await supabase.from('users').upsert({
+    const { error: dbError } = await supabase.from('users').upsert({
       strava_id: tokenData.athlete.id.toString(),
       strava_nickname: tokenData.athlete.username ||
         `${tokenData.athlete.firstname} ${tokenData.athlete.lastname}`,
       access_token: tokenData.access_token,
       refresh_token: tokenData.refresh_token,
-      token_expires_at: new Date(tokenData.expires_at * 1000),
+      token_expires_at: new Date(tokenData.expires_at * 1000).toISOString(),
       telegram_chat_id: telegramChatId,
     }, { onConflict: 'strava_id' });
+
+    if (dbError) {
+      console.error('Supabase error:', dbError);
+      res.status(500).json({ error: 'Database save failed', details: dbError.message });
+      return;
+    }
+
+    console.log('User saved to Supabase:', tokenData.athlete.id);
 
     res.status(200).send(`
       <!DOCTYPE html>

@@ -92,13 +92,19 @@ function verifyWebhookSubscription(challenge: string, verifyToken: string) {
 }
 
 async function handleWebhookEvent(event: StravaWebhookEvent): Promise<void> {
+  console.log('=== Webhook Event Received ===');
+  console.log('Event:', JSON.stringify(event));
+
   if (event.object_type !== 'activity' || event.aspect_type !== 'create') {
     console.log(`Ignoring event: ${event.object_type}.${event.aspect_type}`);
     return;
   }
 
+  console.log('Processing activity.create event...');
+
   const supabase = getSupabaseClient();
   const stravaId = event.owner_id.toString();
+  console.log('Looking up user:', stravaId);
 
   // 1. 사용자 조회
   const { data: user } = await supabase
@@ -196,7 +202,12 @@ export default async function handler(
   // POST: Webhook 이벤트 처리
   if (req.method === 'POST') {
     const event = req.body as StravaWebhookEvent;
-    handleWebhookEvent(event).catch(console.error);
+    try {
+      await handleWebhookEvent(event);
+      console.log('Webhook processing completed');
+    } catch (error) {
+      console.error('Webhook processing error:', error);
+    }
     res.status(200).json({ received: true });
     return;
   }

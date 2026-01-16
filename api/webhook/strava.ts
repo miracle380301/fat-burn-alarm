@@ -135,17 +135,30 @@ async function handleWebhookEvent(event: StravaWebhookEvent): Promise<void> {
   );
   const activity: StravaActivity = await activityRes.json();
 
-  // 4. 계산
-  const calories = activity.calories || estimateCaloriesFromDistance(activity.distance);
+  console.log('Activity data:', JSON.stringify(activity));
+
+  // 4. 계산 (데이터 없으면 0으로 처리)
+  const distance = activity.distance || 0;
+  const movingTime = activity.moving_time || 0;
+  const calories = activity.calories || (distance > 0 ? estimateCaloriesFromDistance(distance) : 0);
   const fatBurned = calculateFatBurn(calories);
-  const distanceKm = (activity.distance / 1000).toFixed(2);
-  const durationMin = Math.round(activity.moving_time / 60);
+  const distanceKm = (distance / 1000).toFixed(2);
+  const durationMin = Math.round(movingTime / 60);
 
-  // 5. 알림 발송
-  const message = `운동 완료!\n${activity.name} ${distanceKm}km, ${durationMin}분\n소모 칼로리: ${calories}kcal\n체지방 감량: 약 ${fatBurned}g`;
+  // 5. 알림 발송 (데이터 없어도 발송)
+  let message = `운동 완료! ${activity.name || '활동'}`;
+  if (distance > 0) {
+    message += `\n${distanceKm}km, ${durationMin}분`;
+  }
+  if (calories > 0) {
+    message += `\n소모 칼로리: ${calories}kcal`;
+    message += `\n체지방 감량: 약 ${fatBurned}g`;
+  } else {
+    message += `\n(칼로리 정보 없음)`;
+  }
 
-  await sendTelegramMessage(user.telegram_chat_id, message);
-  console.log(`Notification sent for activity ${event.object_id}`);
+  const sent = await sendTelegramMessage(user.telegram_chat_id, message);
+  console.log(`Notification ${sent ? 'sent' : 'FAILED'} for activity ${event.object_id}`);
 }
 
 // ============ Handler ============

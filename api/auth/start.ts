@@ -1,10 +1,8 @@
 /**
  * OAuth 시작 엔드포인트
- * Strava 인증 페이지로 리다이렉트
  */
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { generateAuthUrl } from '../../src/strava-setup';
 
 export default function handler(
   req: VercelRequest,
@@ -23,11 +21,12 @@ export default function handler(
     redirectUri += `?telegram_chat_id=${telegramChatId}`;
   }
 
-  try {
-    const authUrl = generateAuthUrl(redirectUri);
-    res.redirect(302, authUrl);
-  } catch (error) {
-    console.error('Auth start error:', error);
-    res.status(500).json({ error: 'Failed to generate auth URL' });
-  }
+  const params = new URLSearchParams({
+    client_id: process.env.STRAVA_CLIENT_ID!,
+    redirect_uri: redirectUri,
+    response_type: 'code',
+    scope: 'activity:read_all',
+  });
+
+  res.redirect(302, `https://www.strava.com/oauth/authorize?${params}`);
 }

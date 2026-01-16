@@ -5,7 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "vercel dev",
-    "build": "tsc",
+    "build": "echo 'Skipping build - Vercel handles API routes'",
+    "test": "npx tsx src/test-local.ts",
     "deploy": "vercel --prod"
   },
   "dependencies": {

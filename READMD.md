@@ -65,12 +65,43 @@ CREATE TABLE users (
 );
 ```
 
+## 사용 방법
+
+### 1. Telegram Chat ID 확인
+1. 텔레그램에서 `@userinfobot` 검색
+2. `/start` 보내면 Chat ID 확인 가능
+
+### 2. Strava 연결
+아래 URL에서 `YOUR_CHAT_ID`를 본인 Chat ID로 변경 후 접속:
+```
+https://fat-burn-alarm.vercel.app/api/auth/start?telegram_chat_id=YOUR_CHAT_ID
+```
+
+예시:
+```
+https://fat-burn-alarm.vercel.app/api/auth/start?telegram_chat_id=7741928681
+```
+
+### 3. 완료!
+이제 Strava에서 운동 완료하면 텔레그램으로 알림이 옵니다.
+
+## API 엔드포인트
+
+| 엔드포인트 | 설명 |
+|------------|------|
+| `GET /api/auth/start` | Strava OAuth 시작 |
+| `GET /api/auth/callback` | OAuth 콜백 (자동 호출) |
+| `GET /api/webhook/strava` | Webhook 구독 검증 |
+| `POST /api/webhook/strava` | Webhook 이벤트 수신 |
+
 ## 환경변수
 
 | 변수 | 설명 |
 |------|------|
 | STRAVA_CLIENT_ID | Strava OAuth Client ID |
 | STRAVA_CLIENT_SECRET | Strava OAuth Secret |
+| STRAVA_VERIFY_TOKEN | Webhook 검증 토큰 |
 | SUPABASE_URL | Supabase 프로젝트 URL |
 | SUPABASE_KEY | Supabase anon key |
-| TELEGRAM_BOT_TOKEN | 텔레그램 봇 토큰 |
+| TELEGRAM_BOT_TOKEN | 텔레그램 봇 토큰 (형식: 숫자:문자열) |
+| APP_URL | 배포된 앱 URL |

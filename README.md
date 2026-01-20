@@ -76,7 +76,7 @@ npm run deploy
 
 OAuth 인증 시작:
 ```
-https://your-app.vercel.app/api/auth/start
+https://fat-burn-alarm.vercel.app/api/auth/start
 ```
 
 ### 2. Strava Webhook 등록
@@ -85,7 +85,7 @@ https://your-app.vercel.app/api/auth/start
 curl -X POST https://www.strava.com/api/v3/push_subscriptions \
   -d client_id=YOUR_CLIENT_ID \
   -d client_secret=YOUR_CLIENT_SECRET \
-  -d callback_url=https://your-app.vercel.app/api/webhook/strava \
+  -d callback_url=https://fat-burn-alarm.vercel.app/api/webhook/strava \
   -d verify_token=YOUR_VERIFY_TOKEN
 ```
 

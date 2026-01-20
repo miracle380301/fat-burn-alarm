@@ -15,7 +15,6 @@ export default async function handler(
   }
 
   const code = req.query.code as string;
-  const telegramChatId = req.query.telegram_chat_id as string;
   const error = req.query.error as string;
 
   if (error) {
@@ -65,7 +64,6 @@ export default async function handler(
       access_token: tokenData.access_token,
       refresh_token: tokenData.refresh_token,
       token_expires_at: new Date(tokenData.expires_at * 1000).toISOString(),
-      telegram_chat_id: telegramChatId,
     }, { onConflict: 'strava_id' });
 
     if (dbError) {
@@ -90,8 +88,9 @@ export default async function handler(
       </head>
       <body>
         <div class="card">
-          <h1>인증 완료!</h1>
+          <h1>🔥 인증 완료!</h1>
           <p>${tokenData.athlete.firstname}님, Strava 연결되었습니다.</p>
+          <p>이제 운동을 완료하면 자동으로 Fat Burn Report가 추가됩니다.</p>
         </div>
       </body>
       </html>

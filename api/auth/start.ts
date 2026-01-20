@@ -13,13 +13,8 @@ export default function handler(
     return;
   }
 
-  const telegramChatId = req.query.telegram_chat_id as string;
   const appUrl = process.env.APP_URL || 'http://localhost:3000';
-
-  let redirectUri = `${appUrl}/api/auth/callback`;
-  if (telegramChatId) {
-    redirectUri += `?telegram_chat_id=${telegramChatId}`;
-  }
+  const redirectUri = `${appUrl}/api/auth/callback`;
 
   const params = new URLSearchParams({
     client_id: process.env.STRAVA_CLIENT_ID!,

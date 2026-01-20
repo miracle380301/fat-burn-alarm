@@ -1,0 +1,100 @@
+{
+  "tiers": [
+    {
+      "maxGrams": 20,
+      "description": "가벼운 간식",
+      "foods": [
+        { "emoji": "🍬", "name": "탕후루 1개" },
+        { "emoji": "🍪", "name": "두쫀쿠 반개" },
+        { "emoji": "🧁", "name": "뚱카롱 반개" },
+        { "emoji": "🍫", "name": "허니버터칩 한줌" },
+        { "emoji": "🥜", "name": "꼬북칩 한줌" },
+        { "emoji": "🍿", "name": "먹태깡 한줌" },
+        { "emoji": "🧃", "name": "흑당버블티 반컵" },
+        { "emoji": "🍭", "name": "젤리스트로 1개" },
+        { "emoji": "🍩", "name": "미니도넛 1개" },
+        { "emoji": "🥧", "name": "에그타르트 반개" }
+      ]
+    },
+    {
+      "maxGrams": 40,
+      "description": "작은 간식",
+      "foods": [
+        { "emoji": "🍪", "name": "두쫀쿠 1개" },
+        { "emoji": "🧁", "name": "뚱카롱 1개" },
+        { "emoji": "🥐", "name": "소금빵 1개" },
+        { "emoji": "🍞", "name": "생크림빵 반개" },
+        { "emoji": "🧇", "name": "크룽지 1개" },
+        { "emoji": "🍡", "name": "약과 1개" },
+        { "emoji": "🥮", "name": "인절미 크림떡" },
+        { "emoji": "🍦", "name": "요아정 미니컵" },
+        { "emoji": "🧀", "name": "바스크치즈케이크 한입" },
+        { "emoji": "🥧", "name": "에그타르트 1개" }
+      ]
+    },
+    {
+      "maxGrams": 70,
+      "description": "일반 간식",
+      "foods": [
+        { "emoji": "🍞", "name": "생크림빵 1개" },
+        { "emoji": "🧇", "name": "크로플 1개" },
+        { "emoji": "🍙", "name": "편의점 삼김" },
+        { "emoji": "🍜", "name": "컵라면 반개" },
+        { "emoji": "🥐", "name": "크로와상 1개" },
+        { "emoji": "🍦", "name": "요아정 레귤러" },
+        { "emoji": "🥗", "name": "포케 반그릇" },
+        { "emoji": "🌽", "name": "옥수수 1개" },
+        { "emoji": "🍠", "name": "군고구마 1개" },
+        { "emoji": "🥪", "name": "서브웨이 15cm 반개" }
+      ]
+    },
+    {
+      "maxGrams": 100,
+      "description": "든든한 간식",
+      "foods": [
+        { "emoji": "🍩", "name": "노티드 도넛" },
+        { "emoji": "🧇", "name": "허니콤보 와플" },
+        { "emoji": "🍟", "name": "맥도날드 감튀 M" },
+        { "emoji": "🌮", "name": "타코벨 타코 1개" },
+        { "emoji": "🌯", "name": "부리토 반개" },
+        { "emoji": "🥓", "name": "통대창 반인분" },
+        { "emoji": "🍗", "name": "BHC 뿌링클 1조각" },
+        { "emoji": "🍰", "name": "투썸 케이크 1조각" },
+        { "emoji": "🥐", "name": "올리브영 크루아상" },
+        { "emoji": "🍕", "name": "피자 1조각" }
+      ]
+    },
+    {
+      "maxGrams": 150,
+      "description": "한 끼 식사",
+      "foods": [
+        { "emoji": "🍔", "name": "맥도날드 빅맥" },
+        { "emoji": "🍕", "name": "피자 2조각" },
+        { "emoji": "🍜", "name": "신라면 1봉지" },
+        { "emoji": "🍛", "name": "마라탕 반그릇" },
+        { "emoji": "🍝", "name": "로제파스타 반접시" },
+        { "emoji": "🌭", "name": "명랑핫도그 2개" },
+        { "emoji": "🥘", "name": "떡볶이 1인분" },
+        { "emoji": "🍱", "name": "편의점 도시락" },
+        { "emoji": "🍲", "name": "순대국 반그릇" },
+        { "emoji": "🥩", "name": "곱창 반인분" }
+      ]
+    },
+    {
+      "maxGrams": 999999,
+      "description": "푸짐한 식사",
+      "foods": [
+        { "emoji": "🍖", "name": "통대창 1인분" },
+        { "emoji": "🍗", "name": "BBQ 황올 반마리" },
+        { "emoji": "🍕", "name": "도미노 피자 반판" },
+        { "emoji": "🍝", "name": "로제파스타 한접시" },
+        { "emoji": "🍛", "name": "마라탕 한그릇" },
+        { "emoji": "🍣", "name": "회전초밥 10접시" },
+        { "emoji": "🥩", "name": "삼겹살 1인분" },
+        { "emoji": "🍲", "name": "부대찌개 1인분" },
+        { "emoji": "🥘", "name": "엽기떡볶이 1인분" },
+        { "emoji": "🍱", "name": "한솥도시락 특대" }
+      ]
+    }
+  ]
+}

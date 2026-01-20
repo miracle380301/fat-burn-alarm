@@ -25,7 +25,7 @@ export default function handler(
     client_id: process.env.STRAVA_CLIENT_ID!,
     redirect_uri: redirectUri,
     response_type: 'code',
-    scope: 'activity:read_all',
+    scope: 'activity:read_all,activity:write',
   });
 
   res.redirect(302, `https://www.strava.com/oauth/authorize?${params}`);
